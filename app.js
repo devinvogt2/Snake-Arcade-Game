@@ -6,6 +6,10 @@ const gameBoard = document.getElementById("game-board")
 console.log(gameBoard)
 const innerBoard = gameBoard.getContext('2d')
 let reload = document.getElementById("reset")
+let up = document.getElementById("up-button")
+let left = document.getElementById("left-button")
+let right = document.getElementById("right-button")
+let down = document.getElementById("down-button")
 
 
                 //https://www.w3schools.com/js/js_classes.asp  
@@ -46,7 +50,7 @@ console.log(gridSize)
 
 
 //snake and food globals
-let speed = 7;  // speed of snake gets updated
+let speed = 7;  // speed of snake gets dated
 let snakeHeadX = 10; //position of snake x head start
 console.log(snakeHeadX)
 let snakeHeadY = 10; //position of snake y head start
@@ -56,7 +60,7 @@ let poisonedFoodX = 16;
 let poisonedFoodY = 16;
 // let poisonedFoodX1 = 4;
 // let poisonedFoodY1 = 4;
-// let poisonedFoodX2 = 8;  // look up way to spawn mutiple foods at once 
+// let poisonedFoodX2 = 8;  // look  way to spawn mutiple foods at once 
 // let poisonedFoodY2 = 8;
 const snakeAdd = []; 
 const gulpSound = new Audio("Gulp-sound-effect.mp3")
@@ -111,7 +115,7 @@ function playerLost () {
 
     
     // if we a hit wall
-    // lose going left    lose going right      lose going up      lose going down
+    // lose going left    lose going right      lose going       lose going down
     if(snakeHeadX < 0 || snakeHeadX >= grid || snakeHeadY < 0 || snakeHeadY >= grid ) {
         lost = true;
     }
@@ -158,7 +162,7 @@ function displayPlayerName() {
 
 function clearBoard () {
     innerBoard.fillStyle = 'black'       //selects fill color as black                //https://www.w3schools.com/tags/canvas_fillstyle.asp
-    innerBoard.fillRect(0,0,gameBoard.width,gameBoard.height); // sets the rectangle grid to be 0,0 and then takes up the same height and width of our canvas // https://www.w3schools.com/tags/canvas_fillrect.asp
+    innerBoard.fillRect(0,0,gameBoard.width,gameBoard.height); // sets the rectangle grid to be 0,0 and then takes  the same height and width of our canvas // https://www.w3schools.com/tags/canvas_fillrect.asp
 }
 
 
@@ -244,20 +248,20 @@ document.body.addEventListener('keydown', keyEntered)
 
 // IMPORTANT FIND BUTTONS USING .keyCode method which associates keyboard keys 
 //with a certain numerical value 
-//ex. (the arrowUps numerical value == 38) 
+//ex. (the arrows numerical value == 38) 
 //website to find the numerical values of the keyboard keys (https://keycode.info/)
 function keyEntered(event) { //event listener for arrow keys
-    //up arrow press
-    if(event.keyCode == 38) {
-        // if upkey is pressed
+    // arrow press
+    if(event.keyCode == 38 ) {
+        // if key is pressed
         if(yDirection == 1)
-        return; //if already moving up you cant move down
-        yDirection = -1 //moves one tile at a time on y axis (up)
-        xDirection = 0; //if moving horizontal stop moving left or ight and only go up
+        return; //if already moving  you cant move down
+        yDirection = -1 //moves one tile at a time on y axis ()
+        xDirection = 0; //if moving horizontal stop moving left or ight and only go 
     }
     //down arrow press
     if(event.keyCode == 40) {
-        if(yDirection == -1)//if already moving down you cant move up
+        if(yDirection == -1)//if already moving down you cant move 
         return; 
         yDirection = 1;
         xDirection = 0;
@@ -276,7 +280,7 @@ function keyEntered(event) { //event listener for arrow keys
         yDirection = 0;
         xDirection = 1;
     }
-    //cant move up or down we need to do something about that *fixed
+    //cant move  or down we need to do something about that *fixed
 }
 
 reload.addEventListener('click', function(){ //reset button listening
@@ -285,7 +289,47 @@ reload.addEventListener('click', function(){ //reset button listening
 
 })
 
+//mobile functionality
+// let mobileView;
 
+// function checkInMobileMode() {
+//     if ($(window).width() <= 766) {
+//         mobileView = true;
+//     }else {
+//         mobileView = false;
+//     }
+//     if(mobileView === true) {
+//         $('.mobile-buttons').show();
+//     }else {
+        
+//     }
+// }
+
+
+up.addEventListener('click', function() {
+    if(yDirection == 1)
+        return;
+        yDirection = -1 //moves one tile at a time on y axis ()
+        xDirection = 0; 
+})
+down.addEventListener('click', function() {
+    if(yDirection == -1)//if already moving down you cant move 
+        return; 
+        yDirection = 1;
+        xDirection = 0;
+})
+ left.addEventListener('click', function() {
+    if(xDirection == 1) //if already moving left cant move right
+        return;
+        yDirection = 0;
+        xDirection = -1;
+ })
+ right.addEventListener('click', function() {
+    if(xDirection == -1) //if already moving right cant move left
+        return;
+        yDirection = 0;
+        xDirection = 1;
+})
 
 
 

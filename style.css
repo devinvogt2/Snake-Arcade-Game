@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #FFE066;
+    background-color: #50514F; 
+
+}
+canvas {
+    margin-top: 5em;
+    box-shadow: black 20px 10px 40px;
+}

@@ -18,6 +18,18 @@ canvas {
     display: none;
 }
 
+#reset {
+    height: 40px;
+    width: 100px;
+    margin-top: 40px;
+    font-size: 20px;
+    font-family: inherit;
+    font-weight: bolder; 
+    border-radius: 3em;
+    border: solid black 4px;
+    background-color: rgba(201, 19, 19, 0.774);
+}
+
 @media only screen and (max-width: 766px) {
 
 h1 {
@@ -59,9 +71,9 @@ canvas {
 #down-button input[type="image"] {
     transform: rotate(180deg);
 }
-
-}
-
 #reset {
     display: none;
 }
+
+}
+

@@ -6,6 +6,11 @@ const gameBoard = document.getElementById("game-board")
 console.log(gameBoard)
 const innerBoard = gameBoard.getContext('2d')
 let reload = document.getElementById("reset")
+
+//grab difficulty buttons
+let hardMode = document.getElementById("hardDiffBtn")
+
+//grab mobile buttons
 let up = document.getElementById("up-button")
 let left = document.getElementById("left-button")
 let right = document.getElementById("right-button")
@@ -277,6 +282,23 @@ function checkAteFood() {
 
 // --EVENT LISTENERS--
 
+
+//difficulty listeners
+
+hardMode.addEventListener("click", changeDifficulty)
+
+function changeDifficulty () {
+    // console.log("click")
+    if(hardMode) {
+        console.log("clicked hard mode btn")
+        hardMode.disabled = true
+        speed = 15;
+        console.log(speed)
+    }
+}
+
+
+//keyboard listeners
 document.body.addEventListener('keydown', keyEntered)
 
 // IMPORTANT FIND BUTTONS USING .keyCode method which associates keyboard keys 
@@ -319,22 +341,8 @@ function keyEntered(event) { //event listener for arrow keys
 reload.addEventListener('click', restartGame) //reset button listening
   
 
-//mobile functionality
-// let mobileView;
 
-// function checkInMobileMode() {
-//     if ($(window).width() <= 766) {
-//         mobileView = true;
-//     }else {
-//         mobileView = false;
-//     }
-//     if(mobileView === true) {
-//         $('.mobile-buttons').show();
-//     }else {
-        
-//     }
-// }
-
+//mobile listeners
 
 up.addEventListener('click', function() {
     if(yDirection == 1)

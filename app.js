@@ -35,6 +35,9 @@ let down = document.getElementById("down-button")
 // game global conditions
 
 //track length of snake
+let gameState = function name(params) {
+    
+}
 class AddToSnake{           
     constructor(x, y){             
        this.x = x;
@@ -78,6 +81,7 @@ let score = 0;
 let playerName = prompt("what is you name?");
 currentPlayerName = playerName;
 console.log(currentPlayerName)
+
 // --GAME STATES--
 
 //our game looping with our set timeout
@@ -100,6 +104,31 @@ function makeGame() {
     
     setTimeout(makeGame, 1000 / speed)
 }
+
+function restartGame () {
+    // class AddToSnake{           
+    //     constructor(x, y){             
+    //        this.x = x;
+    //        this.y = y; 
+    //     }
+    // }
+    
+    
+    grid = 20; //number of squares in our grid
+    gridSize = gameBoard.width / grid - 2;
+    speed = 7;  // speed of snake gets dated
+    snakeHeadX = 10; //position of snake x head start
+    snakeHeadY = 10; //position of snake y head start
+    appleX = 5;
+    appleY = 5;
+    poisonedFoodX = 16;
+    poisonedFoodY = 16;
+    snakeTail = 2;
+    xDirection = 0;
+    yDirection = 0;
+    score = 0;
+    makeGame()
+ }
 
 
 
@@ -134,8 +163,12 @@ function playerLost () {
         }
 
     }
+    if(!lost) {
+        reload.disabled = true;
+    }
 
     if(lost) {
+        reload.disabled = false;
         loser.play()
         innerBoard.fillStyle = "white"
         innerBoard.font = "50px Verdana"
@@ -283,11 +316,8 @@ function keyEntered(event) { //event listener for arrow keys
     //cant move  or down we need to do something about that *fixed
 }
 
-reload.addEventListener('click', function(){ //reset button listening
-    // document.onbeforeunload = null
-    document.location.reload(true)
-
-})
+reload.addEventListener('click', restartGame) //reset button listening
+  
 
 //mobile functionality
 // let mobileView;

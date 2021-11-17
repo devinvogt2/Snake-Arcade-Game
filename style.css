@@ -9,6 +9,32 @@ body {
     background-color: #50514F; 
 
 }
+
+#diffBtn-container {
+    display: flex;
+    width: 350px;
+    justify-content: space-around;
+    align-content: center;
+}
+#diffBtn-container button {
+    width: 100px;
+    height: 30px;
+    border-radius: 3em;
+    border: 3px solid black;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+#easyDiffBtn {
+    background-color: #80D39B;
+}
+#mediumDiffBtn {
+    background-color: #F4F482;
+}
+#hardDiffBtn {
+    background-color: #AD343E;
+}
 canvas {
     margin-top: 5em;
     box-shadow: black 20px 10px 40px;
@@ -30,6 +56,7 @@ canvas {
     border-radius: 3em;
     border: solid black 4px;
     background-color: rgba(201, 19, 19, 0.774);
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 766px) {

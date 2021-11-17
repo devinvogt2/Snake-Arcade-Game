@@ -1,3 +1,4 @@
+
 // --GLOBALS--
  
 
@@ -8,7 +9,11 @@ const innerBoard = gameBoard.getContext('2d')
 let reload = document.getElementById("reset")
 
 //grab difficulty buttons
+
+let easyMode = document.getElementById("easyDiffBtn")
+let mediumMode = document.getElementById("mediumDiffBtn")
 let hardMode = document.getElementById("hardDiffBtn")
+
 
 //grab mobile buttons
 let up = document.getElementById("up-button")
@@ -37,12 +42,9 @@ let down = document.getElementById("down-button")
 
 
 
-// game global conditions
+// GAME GLOBAL CONDITIONS
 
 //track length of snake
-let gameState = function name(params) {
-    
-}
 class AddToSnake{           
     constructor(x, y){             
        this.x = x;
@@ -66,10 +68,8 @@ let appleX = 5;
 let appleY = 5;
 let poisonedFoodX = 16;
 let poisonedFoodY = 16;
-// let poisonedFoodX1 = 4;
-// let poisonedFoodY1 = 4;
-// let poisonedFoodX2 = 8;  // look  way to spawn mutiple foods at once 
-// let poisonedFoodY2 = 8;
+let spawnMoreFoodX = [17, 2, 9];
+let spawnMoreFoodY = [17, 2, 9];
 const snakeAdd = []; 
 const gulpSound = new Audio("Gulp-sound-effect.mp3")
 const yuckSound = new Audio("yuck.mp3")
@@ -102,38 +102,49 @@ function makeGame() {
     
     checkAteFood()
     myFood();
+    //changeDifficulty()
+    
     mySnake();
+   
+    
+    
     displayScore()
     displayPlayerName()
+    
+    
     
     
     setTimeout(makeGame, 1000 / speed)
 }
 
+
 function restartGame () {
-    // class AddToSnake{           
-    //     constructor(x, y){             
-    //        this.x = x;
-    //        this.y = y; 
-    //     }
-    // }
-    
-    
+    hardMode.disabled = false;
+
+
     grid = 20; //number of squares in our grid
     gridSize = gameBoard.width / grid - 2;
+
+
     speed = 7;  // speed of snake gets dated
     snakeHeadX = 10; //position of snake x head start
     snakeHeadY = 10; //position of snake y head start
+    snakeTail = 2;
+    
     appleX = 5;
     appleY = 5;
     poisonedFoodX = 16;
     poisonedFoodY = 16;
-    snakeTail = 2;
+    
     xDirection = 0;
     yDirection = 0;
+    
+    
     score = 0;
     makeGame()
+    
  }
+ 
 
 
 
@@ -173,6 +184,7 @@ function playerLost () {
     }
 
     if(lost) {
+        // hardMode.disabled = false;
         reload.disabled = false;
         loser.play()
         innerBoard.fillStyle = "white"
@@ -250,6 +262,18 @@ function myFood() {
     innerBoard.fillRect(poisonedFoodX * grid, poisonedFoodY * grid, gridSize, gridSize)
 }
 
+function spawnMultipleFood () {
+    
+    for (let i = 0; i < spawnMoreFoodX.length; i++) {
+        let spawnMultipleX = spawnMoreFoodX[i]
+    for (let j = 0; j < spawnMoreFoodY.length; j++) {
+        let spawnMultipleY = spawnMoreFoodY[i]
+
+    innerBoard.fillStyle = "purple";
+    innerBoard.fillRect(spawnMultipleX * grid, spawnMultipleY * grid, gridSize, gridSize)
+        }
+    } 
+}
 
 
 function checkAteFood() {
@@ -285,18 +309,28 @@ function checkAteFood() {
 
 //difficulty listeners
 
-hardMode.addEventListener("click", changeDifficulty)
+easyMode.addEventListener("click", easyDifficulty)
+mediumMode.addEventListener("click", mediumDifficulty)
+hardMode.addEventListener("click", hardDifficulty)
 
-function changeDifficulty () {
-    // console.log("click")
-    if(hardMode) {
-        console.log("clicked hard mode btn")
-        hardMode.disabled = true
-        speed = 15;
-        console.log(speed)
-    }
+function easyDifficulty () {
+        console.log("you clicked easy btn")
+        speed = 5;
+        console.log("your easy speed is now " + speed);
+}
+function mediumDifficulty () {
+        console.log("you clicked medium btn")
+        speed = 10;
+        console.log("your medium speed is now " + speed);
 }
 
+function hardDifficulty () {
+    // console.log("click")
+        console.log("clicked hard mode btn");
+        // hardMode.disabled = true;
+        speed = 15;
+        console.log("your hard speed is now " + speed);
+}
 
 //keyboard listeners
 document.body.addEventListener('keydown', keyEntered)
